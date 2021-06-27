@@ -2,8 +2,8 @@
 Wnix kawaii /bin/cat wike (≡^-ω-^≡) - concatenate fi-fiwes awnd pwint
 own the standawd output!
 
-Neko is an implementaion of the `cat` utility, written in `V` it is
-*almost* compliant with the IEEE Std 1003.1-2008 (“POSIX.1”)
+**Neko** is an implementaion of the `cat` utility, written in [V](https://github.com/vlang/v) it is
+*almost* compliant with the [IEEE Std 1003.1-2008 (“POSIX.1”)](https://standards.ieee.org/standard/1003_1-2008.html)
 specification.
 
 # Features
@@ -79,11 +79,13 @@ The **neko** utility exits 0 on success, and >0 if an error occurs.
 ❯ neko file1
 
 ```
+
 2. Sequentially print the contents of `file1` and `file2` to the file
    `file3`, truncating `file3` if it already exists. See the manual page
    for your shell (e.g., sh(1)) for more information on redirection.
+
    ```sh
-❯ cat file1 file2 > file3
+❯ neko file1 file2 > file3
    ```
    
 3. Print the contents of `file1`, print data it receives from the
@@ -92,7 +94,7 @@ The **neko** utility exits 0 on success, and >0 if an error occurs.
    again, then finally output the contents of `file3`. 
    
    ```sh
-❯ cat file1 - file2 - file3
+❯ neko file1 - file2 - file3
    ```
 
 ## STANDARDS
@@ -102,8 +104,8 @@ The **neko** utility is almost compliant with the IEEE Std 1003.1-2008
 The flags [-benstv] are extensions to that specification.
 
 ## CAVEATS
-1. Because **neko** *UwU-ify*s text, it doesn't comply with IEEE Std
-   1003.1-2008 (“POSIX.1”) specification.
+1. Because **neko** *UwU-ify*s text, it doesn't comply with
+[IEEE Std 1003.1-2008 (“POSIX.1”)](https://standards.ieee.org/standard/1003_1-2008.html)
 2. Because some checks require multiple characters, ex `Na`->`Nya`,
    **neko** can not be truly unbuffered, when `-u` is implemented,
    buffer will be of one line sized.
