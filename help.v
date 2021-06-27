@@ -1,14 +1,14 @@
 module main
 
-const help_text = "NAME cat — concatenate and print files
+const help_text = "NAME neko — concatenate and print files
 
-    SYNOPSIS cat [-benstuv] [file ...]
+    SYNOPSIS neko [-benstuv] [file ...]
 
     DESCRIPTION
 
-        The cat utility reads files sequentially, writing them to the
+        The neko utility reads files sequentially, writing them to the
         standard output. The file operands are processed in command-line
-        order. If file is a single dash (‘-’) or absent, cat reads from
+        order. If file is a single dash (‘-’) or absent, neko reads from
         the standard input.
 
     The options are as follows:
