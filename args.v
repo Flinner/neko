@@ -47,7 +47,7 @@ fn handle_args() ([]string, Settings) {
 		squeze_blank_lines: '-s' in options
 		print_tab: '-t' in options
 		unbuffered: '-u' in options
-		non_priting: '-v' in options
+		non_printing: '-v' in options
 	}
 
 	return filenames, settings

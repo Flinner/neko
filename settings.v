@@ -8,23 +8,35 @@ pub mut:
 	squeze_blank_lines     bool //-s Squeeze multiple adjacent empty lines, causing the output to be single spaced.
 	print_tab              bool //-t Print tab characters as ‘^I’. Implies the -v option to display non-printing characters.
 	unbuffered             bool //-u  The output is guaranteed to be unbuffered
-	non_priting            bool //-v Displays non-printing characters so they are visible.
+	non_printing           bool //-v Displays non-printing characters so they are visible.
 }
 
-fn format(text string, settings Settings) string {
+fn format(text string, raw_settings Settings) string {
+	mut settings := raw_settings
 	mut output := text
+
 	if settings.squeze_blank_lines {
 		output = squeze_blank_lines(output)
+		settings.non_printing = true
 	}
 
 	if settings.print_dollar {
 		output = print_dollar(output)
+		settings.non_printing = true
+	}
+
+	if settings.non_printing {
+		output = non_printing(output)
 	}
 
 	if settings.number_all {
 		output = number_all(output)
 	} else if settings.number_non_blank_lines {
 		output = number_non_blank_lines(output)
+	}
+
+	if settings.unbuffered {
+		output = unbuffered(output)
 	}
 
 	return output
@@ -46,7 +58,6 @@ fn squeze_blank_lines(text string) string {
 }
 
 //-e Print a dollar sign (‘$’) at the end of each line. Implies the -v option
-// TODO: -v
 fn print_dollar(text string) string {
 	return text.split('\n').map('$it $').join('\n')
 }
@@ -64,5 +75,17 @@ fn number_non_blank_lines(text string) string {
 	return text.split('\n').map(if it == '' { it } else { '${i++} $it' }).join('\n')
 }
 
-// fn number_lines(text string) string {
-//}
+// TODO: -t Print tab characters as ‘^I’. Implies the -v option to display non-printing characters.
+fn print_tab(text string) string {
+	return text
+}
+
+// TODO: -v Displays non-printing characters so they are visible.
+fn non_printing(text string) string {
+	return text
+}
+
+// TODO: -u  The output is guaranteed to be unbuffered
+fn unbuffered(text string) string {
+	return text
+}
