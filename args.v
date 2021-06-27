@@ -33,7 +33,6 @@ fn handle_args() ([]string, Settings) {
 			}
 		}
 	}
-	println('optons')
 
 	// check for correct options
 	for option in options {
