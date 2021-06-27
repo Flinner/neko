@@ -17,13 +17,23 @@ const all_options = [
 fn handle_args() ([]string, Settings) {
 	// extract options and filenames
 	args := os.args.clone()[1..] // raw args
-	filenames := args.filter(!(it.starts_with('-') && it.bytes().len > 1)) // filenames, includes '-' (stdin)
-	mut options := cmdline.only_options(args)
 
+	// filenames, includes '-' (stdin)
+	filenames := args.filter(!(it.starts_with('-') && it.bytes().len > 1))
 	// options, not including '-'
-	options = options.filter(it != '-')
-	// TODO: split '-eab' into '-e' '-'a', 'b'..
-	options = options.map(if it.bytes().len > 2 { it } else { it })
+	options_tmp := cmdline.only_options(args).filter(it != '-')
+
+	mut options := []string{}
+
+	// split '-eab' into '-e' '-'a', '-b'..
+	for option in options_tmp {
+		if option.len > 1 {
+			for o in option.split('')[1..] {
+				options.prepend('-$o')
+			}
+		}
+	}
+	println('optons')
 
 	// check for correct options
 	for option in options {
