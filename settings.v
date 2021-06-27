@@ -13,6 +13,9 @@ pub mut:
 
 fn format(text string, settings Settings) string {
 	mut output := text
+	if settings.squeze_blank_lines {
+		output = squeze_blank_lines(output)
+	}
 
 	if settings.print_dollar {
 		output = print_dollar(output)
@@ -43,6 +46,19 @@ fn print_dollar(text string) string {
 fn number_all(text string) string {
 	mut i := 1
 	return text.split('\n').map('${i++} $it').join('\n')
+}
+
+//-s Squeeze multiple adjacent empty lines, causing the output to be single spaced.
+fn squeze_blank_lines(text string) string {
+	mut prev := ' '
+	output := text.split('\n').filter(if it == '' && prev == '' {
+		false
+	} else {
+		prev = it
+		true
+	})
+
+	return output.join('\n')
 }
 
 // fn number_lines(text string) string {
