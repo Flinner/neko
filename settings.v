@@ -14,21 +14,27 @@ pub mut:
 fn format(text string, settings Settings) string {
 	mut output := text
 
-	if settings.number_non_blank_lines {
+	if settings.number_all {
+		output = number_all(output)
+	} else if settings.number_non_blank_lines {
 		output = number_non_blank_lines(output)
 	}
 
 	return output
 }
 
+// -b Number the lines, but don't count blank lines
 fn number_non_blank_lines(text string) string {
 	// TODO: align lines!
 	mut i := 0
 	return text.split('\n').map(if it == '' { it } else { '${i++} $it' }).join('\n')
 }
 
-// fn number(text string) string {
-//}
+//-n Number the output lines, starting at 1.
+fn number_all(text string) string {
+	mut i := 1
+	return text.split('\n').map('${i++} $it').join('\n')
+}
 
 // fn number_lines(text string) string {
 //}
