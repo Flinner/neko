@@ -11,8 +11,9 @@ pub mut:
 	non_priting            bool //-v Displays non-printing characters so they are visible.
 }
 
-// fn settings(text string) string {
-//}
+fn format(text string, settings Settings) string {
+	return text
+}
 
 // fn number_lines_no_space(text string) string {
 //}

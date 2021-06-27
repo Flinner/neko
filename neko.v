@@ -12,7 +12,11 @@ fn main() {
 			println('TODO: stdin')
 		} else {
 			content := os.read_file(filename) or { panic('TODO: msg:  no such file!') }
-			println('${uwu(content)}')
+
+			uwued := uwu(content)
+			formated := format(uwued, settings)
+
+			println('$formated')
 		}
 	}
 	println('$settings')
