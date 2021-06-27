@@ -20,9 +20,13 @@ fn format(text string, raw_settings Settings) string {
 		settings.non_printing = true
 	}
 
+	if settings.print_tab {
+		output = print_tab(output)
+		settings.non_printing = true
+	}
+
 	if settings.print_dollar {
 		output = print_dollar(output)
-		settings.non_printing = true
 	}
 
 	if settings.non_printing {
@@ -75,9 +79,9 @@ fn number_non_blank_lines(text string) string {
 	return text.split('\n').map(if it == '' { it } else { '${i++} $it' }).join('\n')
 }
 
-// TODO: -t Print tab characters as ‘^I’. Implies the -v option to display non-printing characters.
+// -t Print tab characters as ‘^I’. Implies the -v option to display non-printing characters.
 fn print_tab(text string) string {
-	return text
+	return text.replace('\t', '^I')
 }
 
 // TODO: -v Displays non-printing characters so they are visible.
