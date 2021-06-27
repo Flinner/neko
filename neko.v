@@ -9,9 +9,9 @@ fn main() {
 
 	for filename in filenames {
 		if filename == '-' {
-			println('TODO: stdn')
+			println('TODO: stdin')
 		} else {
-			content := os.read_file(filename) or { panic('bruh no such file!') }
+			content := os.read_file(filename) or { panic('TODO: msg:  no such file!') }
 			println('${uwu(content)}')
 		}
 	}
