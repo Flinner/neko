@@ -2,6 +2,9 @@
 Wnix kawaii /bin/cat wike (≡^-ω-^≡) - concatenate fi-fiwes awnd pwint
 own the standawd output!
 
+![neko](https://user-images.githubusercontent.com/85732279/123555535-08a10e80-d78f-11eb-96db-b78949d87065.png)
+
+
 **Neko** is an implementaion of the `cat` utility, written in [V](https://github.com/vlang/v) it is
 *almost* compliant with the [IEEE Std 1003.1-2008 (“POSIX.1”)](https://standards.ieee.org/standard/1003_1-2008.html)
 specification.
