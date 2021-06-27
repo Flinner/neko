@@ -36,7 +36,7 @@ fn handle_args() ([]string, Settings) {
 
 	// help, exit
 	if '-h' in options {
-		println('help message: TODO!')
+		println('$help_text')
 		exit(0)
 	}
 
