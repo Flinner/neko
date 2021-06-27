@@ -14,6 +14,10 @@ pub mut:
 fn format(text string, settings Settings) string {
 	mut output := text
 
+	if settings.print_dollar {
+		output = print_dollar(output)
+	}
+
 	if settings.number_all {
 		output = number_all(output)
 	} else if settings.number_non_blank_lines {
@@ -28,6 +32,11 @@ fn number_non_blank_lines(text string) string {
 	// TODO: align lines!
 	mut i := 0
 	return text.split('\n').map(if it == '' { it } else { '${i++} $it' }).join('\n')
+}
+
+//-e Print a dollar sign (‘$’) at the end of each line. Implies the -v option
+fn print_dollar(text string) string {
+	return text.split('\n').map('$it $').join('\n')
 }
 
 //-n Number the output lines, starting at 1.
