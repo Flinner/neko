@@ -30,23 +30,7 @@ fn format(text string, settings Settings) string {
 	return output
 }
 
-// -b Number the lines, but don't count blank lines
-fn number_non_blank_lines(text string) string {
-	// TODO: align lines!
-	mut i := 0
-	return text.split('\n').map(if it == '' { it } else { '${i++} $it' }).join('\n')
-}
-
-//-e Print a dollar sign (‘$’) at the end of each line. Implies the -v option
-fn print_dollar(text string) string {
-	return text.split('\n').map('$it $').join('\n')
-}
-
-//-n Number the output lines, starting at 1.
-fn number_all(text string) string {
-	mut i := 1
-	return text.split('\n').map('${i++} $it').join('\n')
-}
+// ===================== HELPER FUNCTIONS ==========================
 
 //-s Squeeze multiple adjacent empty lines, causing the output to be single spaced.
 fn squeze_blank_lines(text string) string {
@@ -59,6 +43,25 @@ fn squeze_blank_lines(text string) string {
 	})
 
 	return output.join('\n')
+}
+
+//-e Print a dollar sign (‘$’) at the end of each line. Implies the -v option
+// TODO: -v
+fn print_dollar(text string) string {
+	return text.split('\n').map('$it $').join('\n')
+}
+
+//-n Number the output lines, starting at 1.
+fn number_all(text string) string {
+	mut i := 1
+	return text.split('\n').map('${i++} $it').join('\n')
+}
+
+// -b Number the lines, but don't count blank lines
+fn number_non_blank_lines(text string) string {
+	// TODO: align lines!
+	mut i := 0
+	return text.split('\n').map(if it == '' { it } else { '${i++} $it' }).join('\n')
 }
 
 // fn number_lines(text string) string {
