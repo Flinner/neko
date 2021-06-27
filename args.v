@@ -15,8 +15,7 @@ const all_options = [
 ]
 
 fn handle_args() ([]string, Settings) {
-	mut settings := Settings{}
-
+	// extract options and filenames
 	args := os.args.clone()[1..] // raw args
 	filenames := args.filter(!(it.starts_with('-') && it.bytes().len > 1)) // filenames, includes '-' (stdin)
 	options := cmdline.only_options(args).filter(it != '-') // options, not including '-'
@@ -36,6 +35,16 @@ fn handle_args() ([]string, Settings) {
 	if '-h' in options {
 		println('help message: TODO!')
 		exit(0)
+	}
+
+	settings := Settings{
+		number_non_blank_lines: '-b' in options
+		print_dollar: '-e' in options
+		number_all: '-n' in options
+		squeze_blank_lines: '-s' in options
+		print_tab: '-t' in options
+		unbuffered: '-u' in options
+		non_priting: '-v' in options
 	}
 
 	return filenames, settings
