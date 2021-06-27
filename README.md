@@ -24,7 +24,7 @@ specification.
 ```
 
 ## Performance
-Even though **neko** does a lot of checks and replacements, it still performs very toe-to-toe with `GNU cat`
+Even though **neko** does a lot of checks and replacements, it still performs toe-to-toe with `GNU cat`
 
 ```sh
 ❯ time (for i in {1..10}; do neko LICENSE > /dev/null; done)
@@ -100,18 +100,19 @@ The **neko** utility exits 0 on success, and >0 if an error occurs.
    `file3`, truncating `file3` if it already exists. See the manual page
    for your shell (e.g., sh(1)) for more information on redirection.
 
-   ```sh
+
+```sh
 ❯ neko file1 file2 > file3
-   ```
+```
    
 3. Print the contents of `file1`, print data it receives from the
    standard input until it receives an `EOF` (‘^D’) character, print the
    contents of `file2`, read and output contents of the standard input
    again, then finally output the contents of `file3`. 
    
-   ```sh
+```sh
 ❯ neko file1 - file2 - file3
-   ```
+```
 
 ## STANDARDS
 The **neko** utility is almost compliant with the IEEE Std 1003.1-2008
