@@ -29,9 +29,12 @@ fn handle_args() ([]string, Settings) {
 	// extract options and filenames
 	args := os.args.clone()[1..] // raw args
 	filenames := args.filter(!(it.starts_with('-') && it.bytes().len > 1)) // filenames, includes '-' (stdin)
-	options := cmdline.only_options(args).filter(it != '-') // options, not including '-'
+	mut options := cmdline.only_options(args)
 
-	println('options: $options\nfilename: $filenames')
+	// options, not including '-'
+	options = options.filter(it != '-')
+	// TODO: split '-eab' into '-e' '-'a', 'b'..
+	options = options.map(if it.bytes().len > 2 { it } else { it })
 
 	// check for correct options
 	for option in options {
@@ -42,7 +45,7 @@ fn handle_args() ([]string, Settings) {
 		}
 	}
 
-	// help
+	// help, exit
 	if '-h' in options {
 		println('help message: TODO!')
 		exit(0)
