@@ -12,11 +12,20 @@ pub mut:
 }
 
 fn format(text string, settings Settings) string {
-	return text
+	mut output := text
+
+	if settings.number_non_blank_lines {
+		output = number_non_blank_lines(output)
+	}
+
+	return output
 }
 
-// fn number_lines_no_space(text string) string {
-//}
+fn number_non_blank_lines(text string) string {
+	// TODO: align lines!
+	mut i := 0
+	return text.split('\n').map(if it == '' { it } else { '${i++} $it' }).join('\n')
+}
 
 // fn number(text string) string {
 //}
