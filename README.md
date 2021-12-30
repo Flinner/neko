@@ -64,7 +64,7 @@ cd neko && v -prod .
 **neko** (≡^-ω-^≡) -- concatenate fi-fiwes awnd pwint own the standawd output
 
 ## SYNOPSIS
-`cat [-benst] [file..] [-(stdin)]`
+`neko [-benst] [file..] [-(stdin)]`
 
 ## DESCRIPTION
 
